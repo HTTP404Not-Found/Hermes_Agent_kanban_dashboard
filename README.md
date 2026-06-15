@@ -1,122 +1,222 @@
-# Kanban Dashboard — Backend (Phase 0-1)
+# Kanban Dashboard
 
-即時視覺化 Hermes Kanban 任務與 worker profile 狀態的零依賴靜態 SPA 後端。
+> Real-time Hermes Kanban task board with live worker status and polling updates.
 
-本目錄（`/tmp/kanban-dashboard/`）目前交付 **Phase 0 + Phase 1**：
+**Live Demo**: `http://140.245.120.154:3000/`  
+**Repository**: [HTTP404Not-Found/Hermes_Agent_kanban_dashboard](https://github.com/HTTP404Not-Found/Hermes_Agent_kanban_dashboard)
 
-- **Phase 0 — 環境與資料鏈**：`fetch_data.sh` 把 hermes CLI 輸出合併成 `snapshot.json`
-  + 逐個 task 寫 `tasks/<id>.json`（含 events），給前端 modal 開啟時查 heartbeat。
-- **Phase 1 — 核心邏輯層**：Poller / Diff / Filter 三個純函式模組 + `node --test`
-  完整覆蓋。Phase 2+（HTML / CSS / app.js 整合）尚未實作。
+---
 
-## 檔案結構
+## Features
+
+- **Real-time polling** — Snapshot refreshes every 1 second (configurable)
+- **Live worker status** — Shows online/offline state for `default`, `worker1`, `worker2`, `worker3` profiles via `gateway.pid` health checks
+- **Task card grid** — All Kanban tasks rendered as cards with status badges, assignee, and age
+- **Expand/collapse** — Shows first 8 cards by default; click "show more" to expand all
+- **Filter bar** — Filter by task status, assignee, or sort order
+- **Task detail modal** — Click any card to view full task details, comments, and activity log
+- **Dark tech theme** — CSS animations: fade-in on load, hover lift effect, online pulse indicator
+- **Zero dependencies** — Pure vanilla JS, no npm packages required for the frontend
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        Browser (SPA)                             │
+│  index.html + app.js + styles.css                               │
+│  ├── Poller: fetches snapshot.json every 1s                     │
+│  ├── State: in-memory store (tasks, profiles, filter, UI)      │
+│  └── Renderer: rebuilds task grid, opens modals                 │
+└────────────────────────┬────────────────────────────────────────┘
+                         │ GET /snapshot.json
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Static Server (Node.js server.js OR python3 -m http.server)   │
+│  Port 3000 | Serves /tmp/kanban-dashboard/ as static files    │
+└────────────────────────┬────────────────────────────────────────┘
+                         │ cron / _loop.sh (every 1s)
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  fetch_data.sh                                                      │
+│  ├── hermes kanban list --json                                   │
+│  ├── hermes kanban assignees --json                              │
+│  ├── gateway.pid health checks (kill -0)                          │
+│  └── Writes: /tmp/kanban-dashboard/snapshot.json                 │
+└─────────────────────────────────────────────────────────────────┘
+                         │
+                         ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  Hermes Kanban DB & Gateway Processes                            │
+│  ├── ~/.hermes/kanban.db (SQLite)                               │
+│  ├── ~/.hermes/gateway.pid         (default profile)            │
+│  └── ~/.hermes/profiles/{worker1,2,3}/gateway.pid              │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Tech Stack
+
+- **Frontend**: Vanilla JavaScript (ES6+), no framework
+- **Static Server**: Node.js `http` module (`server.js`)
+- **Data Collection**: Bash script + Python3 JSON processing
+- **Styling**: Pure CSS with CSS custom properties, keyframe animations
+- **Backend**: Hermes Agent CLI (`hermes kanban list/assignees`)
+
+---
+
+## Quick Start
+
+### 1. Start the static server
+
+```bash
+# Option A: Node.js (recommended)
+node /tmp/kanban-dashboard/server.js
+
+# Option B: Python
+cd /tmp/kanban-dashboard && python3 -m http.server 3000
+```
+
+### 2. Start the polling loop
+
+```bash
+# Run once (manual)
+bash /tmp/kanban-dashboard/fetch_data.sh
+
+# Or run continuously (1s interval)
+bash /tmp/kanban-dashboard/_loop.sh &
+```
+
+### 3. Open in browser
+
+```
+http://localhost:3000/
+```
+
+For remote access: `http://140.245.120.154:3000/`
+
+---
+
+## File Structure
 
 ```
 kanban-dashboard/
-├── app/
-│   ├── poller.mjs     # 輪詢器：start/stop/pause/resume/trigger/setInterval/on
-│   ├── diff.mjs       # 純函式 Diff 引擎：added/removed/changed 事件流
-│   └── filter.mjs     # 純函式 Filter & Sort：status/assignee/sort
-├── tests/
-│   ├── poller.test.mjs  # 9 tests
-│   ├── diff.test.mjs    # 9 tests
-│   └── filter.test.mjs  # 16 tests
-├── fetch_data.sh         # 合併 list + assignees + pid 健康檢查 → snapshot.json
-├── sample-snapshot.json  # 固定 fixture（純前端開發用，shape 等同 fetch_data 輸出）
-├── snapshot.json         # fetch_data.sh 執行期產物（給靜態伺服器讀）
-├── tasks/<id>.json       # fetch_data.sh 執行期產物（含 events，給 modal 查 heartbeat）
-├── index.html            # Phase 2 預備（空殼）
-├── styles.css            # Phase 2 預備（空殼）
-├── app.js                # Phase 3 預備（空殼）
-├── README.md             # 本檔
-├── architecture.md       # 系統架構（不變）
-├── research-plan.md      # 研究紀錄（不變）
-└── tasks.md              # 任務清單（不變）
+├── index.html          # Main HTML entry point
+├── app.js             # SPA logic: polling, state, rendering, modals
+├── styles.css         # Dark theme + CSS animations
+├── server.js          # Node.js static file server (port 3000)
+├── fetch_data.sh      # Fetches kanban data + profile health checks
+├── _loop.sh           # Wrapper: runs fetch_data.sh every 1s
+├── snapshot.json      # Generated output (refreshed every 1s)
+├── architecture.md    # System architecture documentation
+├── tasks.md           # Development task tracker
+├── research-plan.md   # Feature research notes
+├── sample-snapshot.json # Example snapshot for offline dev
+└── screenshots/       # UI screenshots
 ```
 
-## 啟動方式
+---
 
-### 0. 抓一次 snapshot
+## Polling & Performance
+
+| Operation | Time |
+|-----------|------|
+| `hermes kanban list --json` | ~0.5s |
+| `hermes kanban assignees --json` | ~0.5s |
+| Per-task detail fetch (×N tasks, parallel) | ~1.0s total |
+| **Total snapshot refresh** | **~1.1s** |
+| Configurable polling interval | Default: 1s (`_loop.sh`) |
+
+Task detail fetching is **parallelized** using background subprocesses (`&` + `wait`) — adding more tasks does not linearly increase fetch time.
+
+---
+
+## Profile Health Check
+
+Each profile's `gateway.pid` is checked with `kill -0`:
+
+| Profile | PID File Location |
+|---------|------------------|
+| `default` | `~/.hermes/gateway.pid` |
+| `worker1` | `~/.hermes/profiles/worker1/gateway.pid` |
+| `worker2` | `~/.hermes/profiles/worker2/gateway.pid` |
+| `worker3` | `~/.hermes/profiles/worker3/gateway.pid` |
+
+- PID file missing → `OFFLINE · no_pid_file` (legal state, not an error)
+- PID file exists but process dead → `OFFLINE · pid_dead`
+
+---
+
+## Deployment
+
+### systemd service (recommended for production)
+
+```ini
+[Unit]
+Description=Hermes Kanban Dashboard
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /tmp/kanban-dashboard/server.js
+Restart=always
+WorkingDirectory=/tmp/kanban-dashboard
+
+[Install]
+WantedBy=default.target
+```
 
 ```bash
-cd /tmp/kanban-dashboard
-./fetch_data.sh
-# 產出 snapshot.json + tasks/<id>.json
+systemctl --user daemon-reload
+systemctl --user enable kanban-dashboard
+systemctl --user start kanban-dashboard
 ```
 
-### 1. 跑測試
+### Public access (no auth)
+
+The dashboard has no built-in authentication. Expose via Cloudflare Tunnel or restrict at the network level:
 
 ```bash
-node --test tests/*.test.mjs
-# 預期 34/34 全綠
+# Bind to localhost only (local access only)
+node /tmp/kanban-dashboard/server.js  # already binds 0.0.0.0:3000
+
+# For public access, use Cloudflare Tunnel
+cloudflared tunnel --url http://localhost:3000
 ```
 
-### 2. 每 5 秒自動抓資料（cron 替代方案）
+---
 
-若系統是傳統 cron（無秒欄位），用 while 迴圈：
+## Customization
 
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `POLL_INTERVAL` | `1` | Seconds between fetch cycles |
+| `INITIAL_DISPLAY` | `8` | Cards shown before "show more" |
+
+Edit `_loop.sh` to change polling interval:
 ```bash
-nohup bash -c 'while true; do
-  /tmp/kanban-dashboard/fetch_data.sh
-  sleep 5
-done' > /tmp/kanban-dashboard/loop.log 2>&1 &
+POLL_INTERVAL=5  # change to 5 seconds
 ```
 
-若系統支援 vixie-cron / cronie（5 欄位 + 秒）：
-
-```bash
-(crontab -l 2>/dev/null; echo "*/5 * * * * * /tmp/kanban-dashboard/fetch_data.sh") | crontab -
+Edit `app.js` to change initial card display:
+```javascript
+const INITIAL = 8;  // change to show more/fewer cards by default
 ```
 
-### 3. 啟動靜態檔案伺服器
+---
 
-```bash
-python3 -m http.server 8000 --directory /tmp/kanban-dashboard
-# 瀏覽器開 http://localhost:8000/snapshot.json 看資料
-```
+## Troubleshooting
 
-## 設計重點
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| Dashboard shows `OFFLINE · no_pid_file` for all profiles | `fetch_data.sh` looking at wrong pid path | Ensure `~/.hermes/gateway.pid` exists for `default`; `~/.hermes/profiles/*/gateway.pid` for workers |
+| Snapshot not updating | `_loop.sh` not running | Run `bash /tmp/kanban-dashboard/_loop.sh &` |
+| 0 tasks shown | `hermes kanban list` returning empty | Check `hermes kanban list --json` output manually |
+| Browser shows stale data | Caching issue | Hard refresh (Ctrl+Shift+R) or check `snapshot.json` modification time |
 
-### fetch_data.sh
-- 不使用 `set -e`：hermes CLI 偶爾 race condition 回非零仍要把當下可取得的資料寫出去
-- 不用 shell 拼 JSON：用 `python3 <<'PY'` heredoc 一次構造 JSON
-- 原子寫入：先寫 `tmp.$$` 再 `mv`
-- pid 檔缺失（worker3 可能缺檔）視為合法離線狀態，不報錯
-- pid 檔存在但行程已死：`online=false` + stderr warning，但**不主動刪 pid 檔**（forensics）
+---
 
-### Poller 模組
-- in-flight 重疊防護：fetcher 還在跑就不會啟動下一次
-- `pause`/`resume` 期間暫停排程；`resume` 時立刻補一次
-- `trigger()` 強制立即觸發一次（給 Refresh 鈕用）
-- `setInterval(ms)` 動態改週期（給 degraded mode 用）
-- 錯誤不中斷輪詢，走 `onError` callback + `error` 事件
+## License
 
-### Diff 模組
-- 純函式，輸入 Map<id, Task>，輸出事件流
-- `changed` 事件附帶 `changes: [fieldName, ...]` 明細，方便前端觸發
-  對應欄位的高亮動畫（status 變 → pulse badge；assignee 變 → 換頭像）
-
-### Filter 模組
-- 純函式，不修改原陣列
-- `status="all"` / `assignee="all"` 視為不限
-- 未知 status/sort 不拋例外（防呆），由呼叫端決定 fallback
-- 支援三種排序：`created_desc`（預設）、`created_asc`、`title_asc`
-
-## 測試覆蓋
-
-| Suite | Tests | 重點 |
-|---|---|---|
-| poller | 9 | 啟動/停止/暫停恢復/trigger/setInterval/錯誤處理/冪等/in-flight |
-| diff | 9 | added/removed/changed/無變化/null 輸入/多欄位同時變化 |
-| filter | 16 | status/assignee/sort/組合/防呆/pure function |
-| **總計** | **34** | 全綠，無外部依賴 |
-
-執行：
-```bash
-cd /tmp/kanban-dashboard
-node --test tests/*.test.mjs
-```
-
-## 版本
-
-`<!-- v1.0.0 | 2026-06-15 -->` — Phase 0-1 後端初版
+MIT
