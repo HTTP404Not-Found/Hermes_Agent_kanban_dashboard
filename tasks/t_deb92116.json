@@ -1,0 +1,176 @@
+{
+  "task": {
+    "id": "t_deb92116",
+    "title": "PopChill 深度研究報告（詳細格式）",
+    "body": "研究 PopChill 拍拍圈，輸出結構化深度報告，存 /tmp/popchill_report_v2.md\n\n---\ntitle: PopChill 拍拍圈深度研究報告\nversion: v1.0.0\ndate: 2026-06-15\nstatus: draft\n---\n\n## 格式要求\n- 每個章節要有明確標題層級（## / ###）\n- 引用來源統一用 [1][2]... 編號\n- 重要數據要加粗\n- 最後附上「可供 PPT 使用的快速摘要」（100字內）\n\n---\n\n## 一、企業背景與產品\n\n### 1.1 公司概況\n- 創辦人、成立時間、總部位置\n- 發展歷程時間軸\n\n### 1.2 產品矩陣\n- C2C 平台功能（列表、搜尋、支付、物流）\n- 行動應用（iOS/Android）\n- 網站架構技術棧\n\n### 1.3 技術核心\n- AI 鑑定系統（Entrupy / LegitApp）\n- 區塊鏈溯源（如有）\n- 雲端架構\n\n---\n\n## 二、商業模式與營運\n\n### 2.1 營收模式\n- 抽成比例（5%？）\n- 跨境金流（Stripe Connect）\n- BNPL 先買後付\n\n### 2.2 物流與供應鏈\n- 跨境物流合作方\n- 倉儲管理\n- 退換貨流程\n\n### 2.3 募資歷程\n- 每輪金額、投資方、估值\n- 資本運用方向\n\n### 2.4 營運數據\n- 月GMV、會員數、商品數\n- 實體店（2026年3月信義區）\n- 年營收成長率\n\n---\n\n## 三、AI 鑑定技術（正貨文件 - 詳細）\n\n### 3.1 Entrupy 顯微鏡頭技術\n- 原理：微米級影像比對\n- 流程圖（購買→拍照→上傳→AI分析→結果）\n- 準確率數據（99.1%）\n- 覆盖品牌數量\n- 限制與漏洞\n\n### 3.2 Legit App / NFT 鑑定\n- 技術原理\n- 與 Entrupy 的差異\n\n### 3.3 AI 鑑定比較表格\n| 系統 | 原理 | 準確率 | 覆蓋品牌 | 成本 |\n|---|---|---|---|---|\n| Entrupy | 顯微影像 | 99.1% | 200+ | 高 |\n| LegitApp | AI/NFT | ? | ? | 中 |\n| PopChill 自研 | ? | ? | ? | ? |\n\n### 3.4 假貨防範機制\n- 人工複核流程\n- 賣家信用評價\n- 違規處分\n\n---\n\n## 四、市場與競爭分析\n\n### 4.1 台灣二手精品市場規模\n- 市場成長率\n- 消費者行為變化\n\n### 4.2 競爭對手比較\n| 平台 | 起源 | 營運模式 | AI鑑定 | 跨境 | 台灣市場 |\n|---|---|---|---|---|---|\n| PopChill | 台灣 | C2C | 有 | 香港/日本 | 主場 |\n| Vestiaire Collective | 法國 | C2C/B2C | 有 | 全球 | 有限 |\n| RealReal | 美國 | C2C | 有 | 北美 | 無 |\n| Rebag | 美國 | B2C | 有 | 美國 | 無 |\n| Rabbit Premium | 台灣 | C2C | 無 | 無 | 有 |\n\n### 4.3 差異化優勢\n\n---\n\n## 五、學術文獻回顧（詳細）\n\n### 5.1 屏東大學：平台制度結構知覺有效性對平台信任的影響\n- 研究問題\n- 研究方法（問卷調查？實驗？）\n- 主要發現（3-5點）\n- 對 PopChill 的啟示\n- 研究侷限性\n\n### 5.2 世新大學：以知覺價值探討消費者對二手精品的認知與購買行為之影響\n- 同上格式\n\n### 5.3 二手精品產業數位轉型模式探析\n- 同上格式\n\n### 5.4 IJFMR 2026：Technology-Enabled Luxury Resale Markets\n- 同上格式\n\n### 5.5 ScienceDirect：Profit or prestige? Luxury brands in second-hand market\n- 同上格式\n\n### 5.6 其他相關文獻（盡量收集）\n\n---\n\n## 六、永續 ESG 與品牌責任\n\n- 碳減排效益估算\n- 循環經濟理論基礎\n- ESG 報告（如有）\n\n---\n\n## 七、最新動態（2025-2026）\n\n- 最新新聞並附來源\n\n---\n\n## 八、SWOT 分析\n\n---\n\n## 九、PPT 快速摘要（100字內）\n\n---\n\n## 十、引用來源（統一編號）\n\n[1]... \n[2]...",
+    "assignee": "worker3",
+    "status": "done",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_deb92116",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781517848,
+    "started_at": 1781517877,
+    "completed_at": 1781518460,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": "完成 PopChill 拍拍圈深度研究報告 v2.0（739 行、35KB、33 條引用來源）。涵蓋企業背景、商業模式、AI 鑑定技術（Entrupy/Legit App）、市場競爭、學術文獻回顧（含屏東大學、世新、IJFMR 2026、ScienceDirect 等 6 份）、ESG、最新動態、SWOT 分析,以及 PPT 快速摘要。報告存於 /tmp/popchill_report_v2.md。",
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker3",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781517848,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1068626",
+        "expires": 1781518777,
+        "run_id": 9
+      },
+      "created_at": 1781517877,
+      "run_id": 9
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1210211
+      },
+      "created_at": 1781517877,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517882,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": {
+        "note": "Starting research on PopChill — searching for company background, AI authentication tech, business model"
+      },
+      "created_at": 1781517903,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517953,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518028,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518091,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518172,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518235,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": {
+        "note": "Research complete — drafting structured report to /tmp/popchill_report_v2.md"
+      },
+      "created_at": 1781518244,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518304,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518364,
+      "run_id": 9
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518424,
+      "run_id": 9
+    },
+    {
+      "kind": "completed",
+      "payload": {
+        "result_len": 0,
+        "summary": "完成 PopChill 拍拍圈深度研究報告 v2.0（739 行、35KB、33 條引用來源）。涵蓋企業背景、商業模式、AI 鑑定技術（Entrupy/Legit App）、市場競爭、學術文獻回顧（含屏東大學、世新、IJFMR 2026、ScienceDirect 等 6 份）、ESG、最新動態、SWOT 分析,以及 PPT 快速摘要。報告存於 /tmp/popchill_report_v2.md。",
+        "artifacts": [
+          "/tmp/popchill_report_v2.md"
+        ]
+      },
+      "created_at": 1781518460,
+      "run_id": 9
+    }
+  ],
+  "runs": [
+    {
+      "id": 9,
+      "profile": "worker3",
+      "step_key": null,
+      "status": "done",
+      "outcome": "completed",
+      "summary": "完成 PopChill 拍拍圈深度研究報告 v2.0（739 行、35KB、33 條引用來源）。涵蓋企業背景、商業模式、AI 鑑定技術（Entrupy/Legit App）、市場競爭、學術文獻回顧（含屏東大學、世新、IJFMR 2026、ScienceDirect 等 6 份）、ESG、最新動態、SWOT 分析,以及 PPT 快速摘要。報告存於 /tmp/popchill_report_v2.md。",
+      "error": null,
+      "metadata": {
+        "changed_files": "[\"/tmp/popchill_report_v2.md\"]",
+        "word_count_zh_chars": 12000,
+        "references_count": 33,
+        "sections": 10,
+        "data_sources": "web_search, web_extract, cross_reference",
+        "key_findings": [
+          "PopChill 2025/09 完成 A 輪 NT$95M 募資,累計 US$9M+,達盈管顧領投",
+          "AI 鑑定雙軌:Entrupy 99.1-99.86% 準確率 + Legit App 多品類覆蓋",
+          "平台抽成 8-10%,客單價 NT$27K,跨境占比 20%",
+          "2026/03 信義區首店開幕,實體客單價為線上 2.3 倍",
+          "獲 Forbes Asia 100 To Watch(2024),Stripe 零盜刷紀錄"
+        ],
+        "artifacts": [
+          "/tmp/popchill_report_v2.md"
+        ],
+        "worker_session_id": "20260615_180438_d93150"
+      },
+      "worker_pid": null,
+      "started_at": 1781517877,
+      "ended_at": 1781518460
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "task": {
+    "id": "t_9ad2963d",
+    "title": "Kanban Dashboard 開發（Phase 2-4 前端）",
+    "body": "## 系統提示語\n- 角色：前端開發者，負責實作 index.html + styles.css + app.js 整合\n- 必須使用的 Skills：project-planner, kanban-delivery\n- 工作目錄：/tmp/kanban-dashboard/\n- 輸入：/tmp/kanban-dashboard/architecture.md, /tmp/kanban-dashboard/tasks.md, 以及 worker1 產出的 app/poller.js, app/diff.js, app/filter.js\n- 輸出格式：直接寫入實體檔案（index.html, styles.css, app.js, README.md）\n- 驗收標準：瀏覽器開啟 http://localhost:8000 正常渲染；所有驗收清單項目可通過\n\n## 任務\n\n根據 architecture.md + tasks.md，實作以下內容：\n\n### Phase 2 — 介面層\n1. ：header（Pause/Refresh 按鈕）、filter selects、profile strip、tasks grid、footer、modal dialog、ESM import app.js\n2. ：CSS variables（暗色主題色票 + 動畫時長）、keyframes（card enter/exit、badge pulse、profile just-up、skeleton shimmer）、reduced-motion 媒體查詢、響應式 breakpoints（1200/900/600px）\n\n### Phase 3 — 整合層\n1. ：建立 store、掛接 Poller → Diff → Filter → DOM renderer；實作 mountCard/removeCard/updateCard/pulseBadge、modal 邏輯、degraded mode（3次失敗後30s interval）、profile offline→online 動畫、鍵盤快捷鍵 (p/r)\n\n### Phase 4 — 驗收\n1. Smoke test：python3 -m http.server 8000，手動驗證所有驗收項目\n2. ：啟動指令、鍵盤快捷鍵說明\n\n### 完成後\n1. 打包：zip /tmp/kanban-dashboard-final.zip /tmp/kanban-dashboard/\n2. send_message 到 telegram:6793926064，附件 MEDIA:/tmp/kanban-dashboard-final.zip\n\n## 版本\n所有新檔案頂部加：\n<!-- v1.0.0 | 2026-06-15 -->",
+    "assignee": "worker2",
+    "status": "running",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_9ad2963d",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781518867,
+    "started_at": 1781518899,
+    "completed_at": null,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": null,
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker2",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781518867,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1068626",
+        "expires": 1781519799,
+        "run_id": 13
+      },
+      "created_at": 1781518899,
+      "run_id": 13
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1214836
+      },
+      "created_at": 1781518899,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518903,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518964,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519024,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519085,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519146,
+      "run_id": 13
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519207,
+      "run_id": 13
+    }
+  ],
+  "runs": [
+    {
+      "id": 13,
+      "profile": "worker2",
+      "step_key": null,
+      "status": "running",
+      "outcome": null,
+      "summary": null,
+      "error": null,
+      "metadata": null,
+      "worker_pid": 1214836,
+      "started_at": 1781518899,
+      "ended_at": null
+    }
+  ]
+}

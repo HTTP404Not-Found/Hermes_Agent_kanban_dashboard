@@ -1,0 +1,238 @@
+{
+  "task": {
+    "id": "t_5f07a404",
+    "title": "Kanban Dashboard 完整計劃審核",
+    "body": "完整審核 /tmp/kanban-dashboard/ 下的所有規劃文件，進行架構與可行性複查。\n\n## 審核範圍\n\n### 1. 文件版本確認\n檢查每份文件是否已有版本號（v1.0.0）和修改日期，沒有的話補上：\n- research-plan.md\n- architecture.md\n- tasks.md\n\n### 2. 架構審核\n- 架構圖是否與實作邏輯一致？\n- Mode B（http server + cron + snapshot.json）的可行性\n- Profile online 偵測（kill -0 fallback）是否合理\n- 動畫系統是否完整且可實現\n\n### 3. 可行性審核\n- CLI 輪詢開銷是否已被正確處理（cron 寫 snapshot.json）\n- 為何放棄 Mode A？Mode B 的缺點是什麼？\n- 零建置工具承諾是否真的做到了（無 npm/webpack）\n- CORS 問題是否已解決\n\n### 4. 完整性審核\n- tasks.md 的 21 個任務是否覆蓋所有功能需求（F1-F16）\n- 是否有遺漏的功能需求或技術風險\n- 文件之間邏輯是否一致\n\n### 5. 產出\n- 更新所有文件的版本號（從 v1.0.0 → v1.1.0 表示本次審核更新）\n- 在文件頂部加 YAML frontmatter：title, version, date, status\n- 最終打包 /tmp/kanban-dashboard-v1.1.0.zip 發送到 Telegram",
+    "assignee": "worker2",
+    "status": "done",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_5f07a404",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781516328,
+    "started_at": 1781516332,
+    "completed_at": 1781517905,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": "三份規劃文件從 v1.0.0 升級到 v1.1.0（YAML frontmatter + F8 heartbeat 路徑 + Poller trigger/setInterval + 200ms cooldown + degraded mode 改進 + 措辭修正）。F1-F16 全部映射到 21 個 task；cross-file 一致性 OK。Zip (27KB) 已送 Telegram。",
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker3",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781516328,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1064688",
+        "expires": 1781517232,
+        "run_id": 7
+      },
+      "created_at": 1781516332,
+      "run_id": 7
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1203933
+      },
+      "created_at": 1781516332,
+      "run_id": 7
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781516337,
+      "run_id": 7
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781516398,
+      "run_id": 7
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781516466,
+      "run_id": 7
+    },
+    {
+      "kind": "reclaimed",
+      "payload": {
+        "manual": true,
+        "reason": "reassign",
+        "prev_lock": "instance-20260610-1214:1064688",
+        "prev_pid": 1203933,
+        "host_local": true,
+        "termination_attempted": true,
+        "terminated": true,
+        "sigkill": false
+      },
+      "created_at": 1781516476,
+      "run_id": 7
+    },
+    {
+      "kind": "assigned",
+      "payload": {
+        "assignee": null
+      },
+      "created_at": 1781516476,
+      "run_id": null
+    },
+    {
+      "kind": "assigned",
+      "payload": {
+        "assignee": "worker2"
+      },
+      "created_at": 1781517457,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1064688",
+        "expires": 1781518373,
+        "run_id": 8
+      },
+      "created_at": 1781517473,
+      "run_id": 8
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1207547
+      },
+      "created_at": 1781517473,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517479,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517539,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517600,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517660,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517721,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517783,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517843,
+      "run_id": 8
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781517905,
+      "run_id": 8
+    },
+    {
+      "kind": "completed",
+      "payload": {
+        "result_len": 0,
+        "summary": "三份規劃文件從 v1.0.0 升級到 v1.1.0（YAML frontmatter + F8 heartbeat 路徑 + Poller trigger/setInterval + 200ms cooldown + degraded mode 改進 + 措辭修正）。F1-F16 全部映射到 21 個 task；cross-file 一致性 OK。Zip (27KB) 已送 Telegram。"
+      },
+      "created_at": 1781517905,
+      "run_id": 8
+    }
+  ],
+  "runs": [
+    {
+      "id": 7,
+      "profile": "worker3",
+      "step_key": null,
+      "status": "reclaimed",
+      "outcome": "reclaimed",
+      "summary": null,
+      "error": "manual_reclaim: reassign",
+      "metadata": {
+        "prev_pid": 1203933,
+        "host_local": true,
+        "termination_attempted": true,
+        "terminated": true,
+        "sigkill": false
+      },
+      "worker_pid": null,
+      "started_at": 1781516332,
+      "ended_at": 1781516476
+    },
+    {
+      "id": 8,
+      "profile": "worker2",
+      "step_key": null,
+      "status": "done",
+      "outcome": "completed",
+      "summary": "三份規劃文件從 v1.0.0 升級到 v1.1.0（YAML frontmatter + F8 heartbeat 路徑 + Poller trigger/setInterval + 200ms cooldown + degraded mode 改進 + 措辭修正）。F1-F16 全部映射到 21 個 task；cross-file 一致性 OK。Zip (27KB) 已送 Telegram。",
+      "error": null,
+      "metadata": {
+        "version_bump": "v1.0.0->v1.1.0",
+        "files_changed": [
+          "/tmp/kanban-dashboard/research-plan.md",
+          "/tmp/kanban-dashboard/architecture.md",
+          "/tmp/kanban-dashboard/tasks.md"
+        ],
+        "findings_fatal": 1,
+        "findings_high": 3,
+        "findings_low": 6,
+        "F_coverage": "F1-F16 mapped (F14/F15/F16 are could-have, out of scope)",
+        "task_count": 21,
+        "deliverable": "/tmp/kanban-dashboard-v1.1.0.zip (27KB, 3 MD files)",
+        "telegram_message_ids": [
+          165,
+          166
+        ],
+        "worker_session_id": "20260615_175754_04fe91"
+      },
+      "worker_pid": null,
+      "started_at": 1781517473,
+      "ended_at": 1781517905
+    }
+  ]
+}

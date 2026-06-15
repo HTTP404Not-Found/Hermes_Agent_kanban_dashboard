@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hermes Kanban Dashboard</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- 整頁骨架：header / profile strip / task grid / footer / modal -->
+  <header class="app-header" role="banner">
+    <div class="app-header__row">
+      <h1 class="app-title">Hermes Kanban Dashboard</h1>
+      <div class="app-controls">
+        <button id="btn-pause" class="btn" type="button" aria-label="暫停輪詢">⏸ <span id="btn-pause-label">Pause</span></button>
+        <button id="btn-refresh" class="btn" type="button" aria-label="立即重新抓取">⟳ Refresh</button>
+      </div>
+    </div>
+    <div class="app-header__row app-meta">
+      <span class="app-meta__item">Last update: <span id="last-update">—</span></span>
+      <span class="app-meta__item" id="poll-status" aria-live="polite">Polling…</span>
+    </div>
+    <div class="app-header__row app-filters">
+      <label class="filter">
+        <span>Status</span>
+        <select id="filter-status">
+          <option value="all">All</option>
+          <option value="ready">Ready</option>
+          <option value="running">Running</option>
+          <option value="blocked">Blocked</option>
+          <option value="done">Done</option>
+          <option value="archived">Archived</option>
+          <option value="scheduled">Scheduled</option>
+          <option value="triage">Triage</option>
+        </select>
+      </label>
+      <label class="filter">
+        <span>Assignee</span>
+        <select id="filter-assignee">
+          <option value="all">All</option>
+          <!-- 由 JS 動態填入 -->
+        </select>
+      </label>
+      <label class="filter">
+        <span>Sort</span>
+        <select id="filter-sort">
+          <option value="created_desc">Newest first</option>
+          <option value="created_asc">Oldest first</option>
+          <option value="title_asc">Title A→Z</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Profile strip：3 個 profile 卡片 -->
+    <section id="profile-strip" class="profile-strip" aria-label="Worker profiles">
+      <!-- 由 JS 動態填入 -->
+    </section>
+
+    <!-- Task grid -->
+    <section id="task-grid" class="task-grid" aria-label="Tasks">
+      <!-- 由 JS 動態填入 -->
+    </section>
+
+    <!-- 空狀態 -->
+    <div id="empty-state" class="empty-state" hidden>
+      <p>沒有符合條件的任務</p>
+    </div>
+  </main>
+
+  <footer class="app-footer" role="contentinfo">
+    <div id="error-banner" class="error-banner" hidden role="alert">
+      <span id="error-text"></span>
+    </div>
+    <div class="app-footer__hint">
+      <span>⌨️ <kbd>p</kbd> 暫停 / <kbd>r</kbd> 重新整理 / <kbd>Esc</kbd> 關閉視窗</span>
+    </div>
+  </footer>
+
+  <!-- Modal：顯示單一 task 詳情（含 Last heartbeat） -->
+  <dialog id="task-modal" class="modal" aria-labelledby="modal-title">
+    <article class="modal__content">
+      <header class="modal__header">
+        <h2 id="modal-title" class="modal__title">Loading…</h2>
+        <button class="modal__close" type="button" id="modal-close" aria-label="Close">✕</button>
+      </header>
+      <div class="modal__body" id="modal-body">
+        <!-- 由 JS 動態填入 -->
+      </div>
+    </article>
+  </dialog>
+
+  <!-- Skeleton template：首次載入時的占位 -->
+  <template id="tpl-card-skeleton">
+    <div class="skeleton skeleton-card" aria-hidden="true">
+      <div class="skeleton-line skeleton-line--title"></div>
+      <div class="skeleton-line skeleton-line--sub"></div>
+      <div class="skeleton-line skeleton-line--badge"></div>
+    </div>
+  </template>
+
+  <!-- ESM entry：瀏覽器原生支援；無 build step -->
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

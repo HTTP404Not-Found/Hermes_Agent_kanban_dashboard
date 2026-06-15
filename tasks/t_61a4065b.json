@@ -1,0 +1,126 @@
+{
+  "task": {
+    "id": "t_61a4065b",
+    "title": "【修復】Kanban Dashboard tasks.md 格式修正",
+    "body": "根據審查意見，修正 /tmp/kanban-dashboard/tasks.md 的內容方向：\n\n## 現有問題\ntasks.md 目前包含了大量實際程式碼（app/poller.js、app/diff.js 等），但這份文件應該是「開發任務規劃文件」，不是「代碼實現」。\n\n## 正確定位\ntasks.md 應該只包含：\n- **開發任務清單**（要做什麼）\n- **開發流程**（先做什麼、後做什麼）\n- **進度摘要**（每階段產出）\n- **階段劃分**（Phase 1/2/3...）\n- **優先級矩陣**（哪些任務優先）\n- **相依關係**（哪些任務依賴哪些）\n\n## 修正要求\n將 tasks.md 重新改寫為純規劃文件，格式例如：\n\nmermaid\ngraph LR\n  T1.1 --> T1.2\n  T1.2 --> T2.1\n  T2.1 --> T2.2\n...\n\n\n## 不包含在 tasks.md 的內容\n- 實際程式碼（移到獨立的 app.js、poller.js 等）\n- TDD 測試案例（移到 tests/ 目錄）\n- CSS 完整實作（移到 styles.css）\n\n## 產出\n1. 重寫 /tmp/kanban-dashboard/tasks.md 為純規劃文件\n2. 將原本的程式碼內容移到對應的獨立法線檔案中（但不需實現，只列出檔案名稱和實作要點）\n3. 更新版本號：v1.1.0 → v1.2.0\n4. 重新打包 /tmp/kanban-dashboard-v1.2.0.zip\n5. send_message 到 telegram:6793926064",
+    "assignee": "worker3",
+    "status": "done",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_61a4065b",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781518428,
+    "started_at": 1781518434,
+    "completed_at": 1781518727,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": "tasks.md 重寫為純規劃文件（965→240 行 / 34KB→12.7KB，零程式碼區塊），版本 v1.1.0→v1.2.0，重新封裝為 /tmp/kanban-dashboard-v1.2.0.zip（21KB），並已送出至 telegram:6793926064（message_id 170）。",
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker3",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781518428,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1064688",
+        "expires": 1781519334,
+        "run_id": 11
+      },
+      "created_at": 1781518434,
+      "run_id": 11
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1212567
+      },
+      "created_at": 1781518434,
+      "run_id": 11
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518439,
+      "run_id": 11
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518499,
+      "run_id": 11
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518559,
+      "run_id": 11
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518619,
+      "run_id": 11
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518680,
+      "run_id": 11
+    },
+    {
+      "kind": "completed",
+      "payload": {
+        "result_len": 0,
+        "summary": "tasks.md 重寫為純規劃文件（965→240 行 / 34KB→12.7KB，零程式碼區塊），版本 v1.1.0→v1.2.0，重新封裝為 /tmp/kanban-dashboard-v1.2.0.zip（21KB），並已送出至 telegram:6793926064（message_id 170）。",
+        "artifacts": [
+          "/tmp/kanban-dashboard-v1.2.0.zip",
+          "/tmp/kanban-dashboard/tasks.md"
+        ]
+      },
+      "created_at": 1781518727,
+      "run_id": 11
+    }
+  ],
+  "runs": [
+    {
+      "id": 11,
+      "profile": "worker3",
+      "step_key": null,
+      "status": "done",
+      "outcome": "completed",
+      "summary": "tasks.md 重寫為純規劃文件（965→240 行 / 34KB→12.7KB，零程式碼區塊），版本 v1.1.0→v1.2.0，重新封裝為 /tmp/kanban-dashboard-v1.2.0.zip（21KB），並已送出至 telegram:6793926064（message_id 170）。",
+      "error": null,
+      "metadata": {
+        "artifacts": [
+          "/tmp/kanban-dashboard-v1.2.0.zip",
+          "/tmp/kanban-dashboard/tasks.md"
+        ],
+        "worker_session_id": "20260615_181355_0f8609"
+      },
+      "worker_pid": null,
+      "started_at": 1781518434,
+      "ended_at": 1781518727
+    }
+  ]
+}

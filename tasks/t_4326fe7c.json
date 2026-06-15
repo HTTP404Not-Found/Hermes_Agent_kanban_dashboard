@@ -1,0 +1,105 @@
+{
+  "task": {
+    "id": "t_4326fe7c",
+    "title": "GitHub 狀態檢查",
+    "body": "檢查 GitHub 相關功能是否正常運作，執行以下診斷：\n\n1. gh auth status（檢查登入狀態）\n2. gh api user --jq .login（確認目前用戶）\n3. 測試 curl https://api.github.com/user 是否可存取\n4. 嘗試 gh repo list --limit 1 確認 API 正常\n\n輸出完整結果，判斷 GitHub 是否正常。",
+    "assignee": "worker2",
+    "status": "done",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_4326fe7c",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781516077,
+    "started_at": 1781516092,
+    "completed_at": 1781516132,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": "GitHub 不正常 — gh CLI 未安裝（exit 127），curl /user 回 401（無 token）。3/4 檢查因缺少 gh 失敗，僅 curl 端點本身可達但需認證。需要在主機上安裝 gh CLI 並完成 `gh auth login`，或設定 GH_TOKEN 環境變數。完整結果輸出至 /tmp/worker2_result.json。",
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker2",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781516077,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1064688",
+        "expires": 1781516992,
+        "run_id": 6
+      },
+      "created_at": 1781516092,
+      "run_id": 6
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1203110
+      },
+      "created_at": 1781516092,
+      "run_id": 6
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781516097,
+      "run_id": 6
+    },
+    {
+      "kind": "completed",
+      "payload": {
+        "result_len": 0,
+        "summary": "GitHub 不正常 — gh CLI 未安裝（exit 127），curl /user 回 401（無 token）。3/4 檢查因缺少 gh 失敗，僅 curl 端點本身可達但需認證。需要在主機上安裝 gh CLI 並完成 `gh auth login`，或設定 GH_TOKEN 環境變數。完整結果輸出至 /tmp/worker2_result.json。"
+      },
+      "created_at": 1781516132,
+      "run_id": 6
+    }
+  ],
+  "runs": [
+    {
+      "id": 6,
+      "profile": "worker2",
+      "step_key": null,
+      "status": "done",
+      "outcome": "completed",
+      "summary": "GitHub 不正常 — gh CLI 未安裝（exit 127），curl /user 回 401（無 token）。3/4 檢查因缺少 gh 失敗，僅 curl 端點本身可達但需認證。需要在主機上安裝 gh CLI 並完成 `gh auth login`，或設定 GH_TOKEN 環境變數。完整結果輸出至 /tmp/worker2_result.json。",
+      "error": null,
+      "metadata": {
+        "checks_passed": 0,
+        "checks_failed": 4,
+        "gh_installed": false,
+        "auth_present": false,
+        "verdict": "GITHUB_NOT_FUNCTIONAL",
+        "remediation": [
+          "apt install gh (or snap/brew)",
+          "gh auth login",
+          "or export GH_TOKEN=..."
+        ],
+        "result_file": "/tmp/worker2_result.json",
+        "worker_session_id": "20260615_173453_468372"
+      },
+      "worker_pid": null,
+      "started_at": 1781516092,
+      "ended_at": 1781516132
+    }
+  ]
+}

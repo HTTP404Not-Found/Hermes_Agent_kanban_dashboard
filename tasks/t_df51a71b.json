@@ -1,0 +1,113 @@
+{
+  "task": {
+    "id": "t_df51a71b",
+    "title": "Kanban Dashboard 開發（Phase 0-1 後端）",
+    "body": "## 系統提示語\n- 角色：全端開發者，負責實作 cron + fetch_data.sh + Poller + Diff + Filter 模組\n- 必須使用的 Skills：project-planner, kanban-delivery\n- 工作目錄：/tmp/kanban-dashboard/\n- 輸入：/tmp/kanban-dashboard/architecture.md, /tmp/kanban-dashboard/tasks.md\n- 輸出格式：直接寫入實體檔案（fetch_data.sh, app/poller.js, app/diff.js, app/filter.js, tests/*.test.mjs, sample-snapshot.json）\n- 驗收標準：node --test 全部綠燈；fetch_data.sh 每5秒寫 snapshot.json\n\n## 任務\n\n根據 architecture.md + tasks.md，實作以下內容：\n\n### Phase 0 — 環境與資料鏈\n1. 建立  目錄和  目錄\n2. 實作 ：合併 hermes kanban list --json + assignees + pid 健康檢查，輸出 snapshot.json；並建立 tasks/ 子目錄對每個 task 寫 tasks/<id>.json（含 events）\n3. 設定 cron 每 5 秒執行 fetch_data.sh（或用 while sleep loop fallback）\n\n### Phase 1 — 核心邏輯層（TDD）\n1. ：createPoller({ fetcher, interval, onError })，API：start/stop/pause/resume/trigger/setInterval/on\n2. ：測試案例\n3. ：diff(prev, next) → added/removed/changed 事件\n4. ：測試案例\n5. ：applyFilter(tasks, { status, assignee, sort })\n6. ：測試案例\n7. ：固定 fixture\n\n### 完成後\n1. 驗收：node --test tests/*.test.mjs 全綠\n2. fetch_data.sh 手動跑一次確認 snapshot.json 是有效 JSON\n3. 打包：zip /tmp/kanban-dashboard-p1.zip /tmp/kanban-dashboard/\n4. send_message 到 telegram:6793926064，附件 MEDIA:/tmp/kanban-dashboard-p1.zip\n\n## 版本\n所有新檔案頂部加：\n<!-- v1.0.0 | 2026-06-15 -->",
+    "assignee": "worker1",
+    "status": "running",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_df51a71b",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781518856,
+    "started_at": 1781518862,
+    "completed_at": null,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": null,
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker1",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781518856,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1197990",
+        "expires": 1781519762,
+        "run_id": 12
+      },
+      "created_at": 1781518862,
+      "run_id": 12
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1214607
+      },
+      "created_at": 1781518862,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518874,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518934,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781518996,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519056,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519117,
+      "run_id": 12
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781519177,
+      "run_id": 12
+    }
+  ],
+  "runs": [
+    {
+      "id": 12,
+      "profile": "worker1",
+      "step_key": null,
+      "status": "running",
+      "outcome": null,
+      "summary": null,
+      "error": null,
+      "metadata": null,
+      "worker_pid": 1214607,
+      "started_at": 1781518862,
+      "ended_at": null
+    }
+  ]
+}

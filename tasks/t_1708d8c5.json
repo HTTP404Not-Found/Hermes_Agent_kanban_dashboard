@@ -1,0 +1,152 @@
+{
+  "task": {
+    "id": "t_1708d8c5",
+    "title": "Kanban & Worker 狀態視覺化網站規劃",
+    "body": "規劃一個網站，功能：即時視覺化顯示 Hermes Kanban 所有任務狀態 + 各 Worker Profile (worker1/worker2/default) 的運行狀態，帶動畫效果。\n\n## 必須使用 project-planner skill\n先用  了解規劃流程，然後依序產出：\n1. 研究計畫書 (research-plan.md)\n2. 架構規劃含 Mermaid 圖 (architecture.md)\n3. 開發任務清單 (tasks.md)\n\n## 網站功能需求（具體）\n- 即時讀取 hermes kanban list --json 顯示所有任務\n- 顯示 worker1/worker2/default 三個 profile 的狀態（在線/閒置/忙碌）\n- 任務狀態用卡片呈現（ready/running/blocked/done 等）\n- 動畫效果：任務狀態變化時有過渡動畫，卡片載入時有 entrance animation\n- 建議技術：簡單 HTML + CSS animations + JavaScript 定時輪詢（不需後端）\n\n## 規劃重點\n- 前端展示架構\n- 與 Hermes CLI/API 的互動方式\n- 即時更新機制（polling interval）\n- 動畫設計方向\n\n最終產出：\n- /tmp/kanban-dashboard/research-plan.md\n- /tmp/kanban-dashboard/architecture.md  \n- /tmp/kanban-dashboard/tasks.md",
+    "assignee": "worker1",
+    "status": "done",
+    "priority": 0,
+    "tenant": null,
+    "workspace_kind": "scratch",
+    "workspace_path": "/home/ubuntu/.hermes/kanban/workspaces/t_1708d8c5",
+    "branch_name": null,
+    "created_by": "user",
+    "created_at": 1781514615,
+    "started_at": 1781514634,
+    "completed_at": 1781514973,
+    "result": null,
+    "skills": [],
+    "max_retries": null,
+    "session_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null
+  },
+  "latest_summary": "完成 Kanban Dashboard 三段式規劃文件：研究計畫書（172 行，含功能/非功能需求、3 個 user story、風險矩陣）、架構規劃（357 行，含 4 張 Mermaid 圖：系統總覽 / 模組分解 / sequence diagram / layout）、開發任務清單（845 行，21 個 bite-sized tasks 各附 TDD 步驟、完整程式碼、檔案路徑、驗收指令）。產出全部位於 /tmp/kanban-dashboard/。",
+  "parents": [],
+  "children": [],
+  "comments": [],
+  "events": [
+    {
+      "kind": "created",
+      "payload": {
+        "assignee": "worker1",
+        "status": "ready",
+        "parents": [],
+        "tenant": null,
+        "branch_name": null,
+        "skills": null,
+        "goal_mode": true
+      },
+      "created_at": 1781514615,
+      "run_id": null
+    },
+    {
+      "kind": "claimed",
+      "payload": {
+        "lock": "instance-20260610-1214:1068626",
+        "expires": 1781515534,
+        "run_id": 2
+      },
+      "created_at": 1781514634,
+      "run_id": 2
+    },
+    {
+      "kind": "spawned",
+      "payload": {
+        "pid": 1197360
+      },
+      "created_at": 1781514634,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514638,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514702,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": {
+        "note": "researching hermes kanban data model + writing research-plan.md"
+      },
+      "created_at": 1781514712,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514762,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514823,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514883,
+      "run_id": 2
+    },
+    {
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1781514943,
+      "run_id": 2
+    },
+    {
+      "kind": "completed",
+      "payload": {
+        "result_len": 0,
+        "summary": "完成 Kanban Dashboard 三段式規劃文件：研究計畫書（172 行，含功能/非功能需求、3 個 user story、風險矩陣）、架構規劃（357 行，含 4 張 Mermaid 圖：系統總覽 / 模組分解 / sequence diagram / layout）、開發任務清單（845 行，21 個 bite-sized tasks 各附 TDD 步驟、完整程式碼、檔案路徑、驗收指令）。產出全部位於 /tmp/kanban-dashboard/。"
+      },
+      "created_at": 1781514973,
+      "run_id": 2
+    }
+  ],
+  "runs": [
+    {
+      "id": 2,
+      "profile": "worker1",
+      "step_key": null,
+      "status": "done",
+      "outcome": "completed",
+      "summary": "完成 Kanban Dashboard 三段式規劃文件：研究計畫書（172 行，含功能/非功能需求、3 個 user story、風險矩陣）、架構規劃（357 行，含 4 張 Mermaid 圖：系統總覽 / 模組分解 / sequence diagram / layout）、開發任務清單（845 行，21 個 bite-sized tasks 各附 TDD 步驟、完整程式碼、檔案路徑、驗收指令）。產出全部位於 /tmp/kanban-dashboard/。",
+      "error": null,
+      "metadata": {
+        "deliverables": {
+          "item": [
+            "/tmp/kanban-dashboard/research-plan.md",
+            "/tmp/kanban-dashboard/architecture.md",
+            "/tmp/kanban-dashboard/tasks.md"
+          ]
+        },
+        "data_model_verified_from_real_cli": "true",
+        "mermaid_diagrams": "4",
+        "dev_tasks": "21",
+        "skill_used": "plan",
+        "key_decisions": {
+          "item": [
+            "部署採模式 A（file:// + sample-snapshot.json）為 MVP",
+            "Diff 引擎而非全幅重繪，避免動畫閃爍",
+            "TDD 順序：Poller → Diff → Filter → UI 整合",
+            "prefers-reduced-motion 自動降級",
+            "fetcher 介面抽換，未來切 WebSocket 零前端改動"
+          ]
+        },
+        "worker_session_id": "20260615_171035_8cb4c0"
+      },
+      "worker_pid": null,
+      "started_at": 1781514634,
+      "ended_at": 1781514973
+    }
+  ]
+}
