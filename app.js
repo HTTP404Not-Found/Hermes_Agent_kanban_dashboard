@@ -71,6 +71,7 @@ const store = {
     consecutiveFailures: 0,
     filter: { status: 'all', assignee: 'all', sort: 'created_desc' },
     _lastPulseAt: new Map(), // taskId -> timestamp（cooldown 用）
+    showAll: false,  // true = 顯示全部，false = 只顯示前 8 張
   },
 };
 
@@ -87,6 +88,7 @@ const els = {
   profileStrip: $('#profile-strip'),
   taskGrid: $('#task-grid'),
   emptyState: $('#empty-state'),
+  showMoreBtn: $('#show-more'),
   errorBanner: $('#error-banner'),
   errorText: $('#error-text'),
   modal: $('#task-modal'),
@@ -181,12 +183,17 @@ function renderTaskGrid() {
   }
   els.emptyState.hidden = true;
 
+  // 切片：預設只顯示前 8 張
+  const INITIAL = 8;
+  const toShow = store.meta.showAll ? filtered : filtered.slice(0, INITIAL);
+  const hasMore = !store.meta.showAll && filtered.length > INITIAL;
+
   // 重建 grid（diff 渲染對 50 張以下卡片 ROI 不高，直接重繪）
   // 為了觸發進場動畫，給新進場的卡片加 .card--enter
   const existingIds = new Set($$('.card', els.taskGrid).map(el => el.dataset.taskId));
-  const newIds = new Set(filtered.map(t => t.id));
+  const newIds = new Set(toShow.map(t => t.id));
 
-  els.taskGrid.innerHTML = filtered.map(t => {
+  let html = toShow.map(t => {
     const isNew = !existingIds.has(t.id);
     const cls = isNew ? 'card card--enter' : 'card';
     const assigneeText = t.assignee || '—';
@@ -205,6 +212,12 @@ function renderTaskGrid() {
       </article>`;
   }).join('');
 
+  if (hasMore) {
+    html += `<button id="show-more" class="show-more-btn">⬇ 還有 ${filtered.length - INITIAL} 項，點我看全部</button>`;
+  }
+
+  els.taskGrid.innerHTML = html;
+
   // 綁定 click / keyboard
   $$('.card', els.taskGrid).forEach(card => {
     card.addEventListener('click', () => openModal(card.dataset.taskId));
@@ -215,6 +228,15 @@ function renderTaskGrid() {
       }
     });
   });
+
+  // Show-more button
+  const showMore = els.showMoreBtn || $('#show-more');
+  if (showMore) {
+    showMore.addEventListener('click', () => {
+      store.meta.showAll = true;
+      renderTaskGrid();
+    });
+  }
 }
 
 // 補：給 updateCard（in-place status 變化時用）— 但目前策略是 5s 整批重繪，所以 pulseBadge 仍有用
@@ -456,14 +478,17 @@ els.btnRefresh.addEventListener('click', () => {
 
 els.filterStatus.addEventListener('change', () => {
   store.meta.filter.status = els.filterStatus.value;
+  store.meta.showAll = false;
   renderTaskGrid();
 });
 els.filterAssignee.addEventListener('change', () => {
   store.meta.filter.assignee = els.filterAssignee.value;
+  store.meta.showAll = false;
   renderTaskGrid();
 });
 els.filterSort.addEventListener('change', () => {
   store.meta.filter.sort = els.filterSort.value;
+  store.meta.showAll = false;
   renderTaskGrid();
 });
 
