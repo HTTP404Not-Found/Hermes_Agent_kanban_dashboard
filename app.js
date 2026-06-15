@@ -212,7 +212,9 @@ function renderTaskGrid() {
       </article>`;
   }).join('');
 
-  if (hasMore) {
+  if (store.meta.showAll) {
+    html += `<button id="show-more" class="show-more-btn">⬆ 收合，只顯示前 ${INITIAL} 項</button>`;
+  } else if (hasMore) {
     html += `<button id="show-more" class="show-more-btn">⬇ 還有 ${filtered.length - INITIAL} 項，點我看全部</button>`;
   }
 
@@ -229,11 +231,11 @@ function renderTaskGrid() {
     });
   });
 
-  // Show-more button
+  // Show-more button (toggle)
   const showMore = els.showMoreBtn || $('#show-more');
   if (showMore) {
     showMore.addEventListener('click', () => {
-      store.meta.showAll = true;
+      store.meta.showAll = !store.meta.showAll;
       renderTaskGrid();
     });
   }
