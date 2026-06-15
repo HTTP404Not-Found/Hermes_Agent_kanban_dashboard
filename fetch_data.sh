@@ -108,8 +108,7 @@ with open(out_path, "w") as f:
 PY
 mv "$TMP_MAIN" "$OUT_PATH"
 
-# 每個 task 的完整詳情（包含 events）寫到 tasks/<id>.json，
-# 給 modal 開啟時查 heartbeat 用。
+# 每個 task 的完整詳情（包含 events）寫到 tasks/<id>.json，平行抓取。
 for tid in $(python3 -c "
 import json, sys
 try:
@@ -120,9 +119,9 @@ except Exception:
     pass
 " "$OUT_PATH" | grep -v '^$'); do
     TMP_TASK="$(mktemp "${TASKS_DIR}/.${tid}.XXXXXX")"
-    if hermes kanban show "$tid" --json 2>/dev/null > "$TMP_TASK"; then
-        mv "$TMP_TASK" "${TASKS_DIR}/${tid}.json"
-    else
-        rm -f "$TMP_TASK"
-    fi
+    hermes kanban show "$tid" --json 2>/dev/null > "$TMP_TASK" &
+    echo "$tid:$TMP_TASK"
+done | while IFS=: read -r tid tmp; do
+    mv "$tmp" "${TASKS_DIR}/${tid}.json" 2>/dev/null
 done
+wait 2>/dev/null
