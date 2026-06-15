@@ -61,7 +61,7 @@ known = sorted({
 
 profiles = []
 for name in known:
-    pid_file = os.path.expanduser(f"~/.hermes/profiles/{name}/gateway.pid")
+    pid_file = os.path.expanduser(f"~/.hermes/profiles/{name}/gateway.pid") if name != "default" else os.path.expanduser("~/.hermes/gateway.pid")
     online = False
     pid = None
     last_seen = None
