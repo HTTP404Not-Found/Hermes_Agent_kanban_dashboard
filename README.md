@@ -168,8 +168,8 @@ kanban-dashboard/
 ├── architecture.md       # System architecture doc  (v1.1.0)
 ├── tasks.md              # Development task tracker
 ├── research-plan.md      # Feature research notes
+├── SECURITY_AUDIT.md     # Security audit checklist
 ├── sample-snapshot.json  # Offline-development fixture
-└── screenshots/          # UI screenshots  (desktop-default, desktop-loaded, mobile-375)
 ```
 
 ---
@@ -321,16 +321,17 @@ const INITIAL = 12;  // was 8 — show 12 cards before "show more"
 
 | Doc                    | Version | Purpose                                              |
 |------------------------|---------|------------------------------------------------------|
-| `README.md` (this file) | v1.0.0  | User-facing onboarding & ops guide (English)        |
-| `README.zh.md`          | v1.0.0  | User-facing onboarding & ops guide (中文)            |
+| `README.md` (this file) | v1.2.0  | User-facing onboarding & ops guide (English)        |
+| `README.zh.md`          | v1.2.0  | User-facing onboarding & ops guide (中文)            |
 | `architecture.md`       | v1.1.0  | Design doc — modules, data flow, error handling     |
 | `research-plan.md`      | v1.1.0  | Feature research, user stories, risk matrix         |
-| `tasks.md`              | v1.2.0+ | Per-task development tracker                         |
+| `tasks.md`              | v1.2.0  | Per-task development tracker                         |
+| `SECURITY_AUDIT.md`     | v1.2.0  | Security audit checklist                              |
 
 Every shipped source file carries a `<!-- v1.0.0 | 2026-06-15 -->` marker so you can `grep` the codebase to see exactly which files belong to the v1.0.0 release:
 
 ```bash
-grep -rn "v1.0.0 | 2026-06-15" /tmp/kanban-dashboard
+grep -rn "v1.0.0 | 2026-06-15" .
 ```
 
 ---
