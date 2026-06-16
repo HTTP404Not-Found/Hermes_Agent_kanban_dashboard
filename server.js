@@ -44,6 +44,6 @@ createServer((req, res) => {
     res.writeHead(404);
     res.end('Not Found');
   }
-}).listen(PORT, '127.0.0.1', () => {  // C-1 fix: bind to localhost only
+}).listen(PORT, '0.0.0.0', () => {  // bind to all interfaces
   console.log(`Server running at http://127.0.0.1:${PORT}/`);
 });
