@@ -18,7 +18,7 @@ const MIME = {
 };
 
 createServer((req, res) => {
-  let file = req.url === '/' ? '/index.html' : req.url.split('?')[0];
+  let file = req.url === '/' ? 'index.html' : req.url.split('?')[0].replace(/^\//, '');
   // H-1 fix: resolve path and verify it stays within DIR (prevent path traversal)
   let resolved;
   try {
