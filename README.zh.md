@@ -168,8 +168,8 @@ kanban-dashboard/
 ├── architecture.md       # 系統架構文件（v1.1.0）
 ├── tasks.md              # 開發任務追蹤清單
 ├── research-plan.md      # 功能研究筆記
+├── SECURITY_AUDIT.md     # 安全審計檢查清單
 ├── sample-snapshot.json  # 離線開發用 fixture
-└── screenshots/          # UI 截圖（desktop-default、desktop-loaded、mobile-375）
 ```
 
 ---
@@ -321,16 +321,17 @@ const INITIAL = 12;  // 原值 8——預設顯示 12 張卡片
 
 | 文件                     | 版本    | 用途                                              |
 |--------------------------|---------|---------------------------------------------------|
-| `README.md`（本檔）       | v1.0.0  | 使用者導向的入門與維運指南（English）              |
-| `README.zh.md`           | v1.0.0  | 使用者導向的入門與維運指南（中文）                 |
-| `architecture.md`        | v1.1.0  | 設計文件——模組、資料流、錯誤處理                  |
+| `README.md`（本檔）       | v1.2.0  | 使用者導向的入門與維運指南（English）              |
+| `README.zh.md`           | v1.2.0  | 使用者導向的入門與維運指南（中文）                 |
+| `architecture.md`          | v1.1.0  | 設計文件——模組、資料流、錯誤處理                  |
 | `research-plan.md`       | v1.1.0  | 功能研究、使用者故事、風險矩陣                    |
-| `tasks.md`               | v1.2.0+ | 逐項開發任務追蹤                                  |
+| `tasks.md`               | v1.2.0  | 逐項開發任務追蹤                                  |
+| `SECURITY_AUDIT.md`      | v1.2.0  | 安全審計檢查清單                                  |
 
 每個出貨的原始檔都帶有 `<!-- v1.0.0 | 2026-06-15 -->` 標記，可用 grep 一次看完整個 v1.0.0 釋出涵蓋哪些檔案：
 
 ```bash
-grep -rn "v1.0.0 | 2026-06-15" /tmp/kanban-dashboard
+grep -rn "v1.0.0 | 2026-06-15" .
 ```
 
 ---
