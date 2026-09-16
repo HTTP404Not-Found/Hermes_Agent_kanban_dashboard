@@ -2,7 +2,7 @@
 
 > Real-time Hermes Kanban task board with live worker status and polling updates.
 
-**Live Demo**: `http://REDACTED:3000/`  
+**Live Demo**: `http://localhost:3000/`  
 **Repository**: [HTTP404Not-Found/Hermes_Agent_kanban_dashboard](https://github.com/HTTP404Not-Found/Hermes_Agent_kanban_dashboard)
 
 A single-page web frontend that visualizes the state of a running [Hermes Agent](https://github.com) Kanban DB: live task cards, per-profile gateway health, task detail modals, and status / assignee / sort filters. The frontend is plain HTML + vanilla JS; the backend is a small bash + Python pipeline that snapshots Hermes CLI output to JSON files which the static server serves.
@@ -136,7 +136,7 @@ bash /tmp/kanban-dashboard/_loop.sh &
 http://localhost:3000/
 ```
 
-Remote access: `http://REDACTED:3000/`
+Remote access: `http://localhost:3000/`
 
 ---
 

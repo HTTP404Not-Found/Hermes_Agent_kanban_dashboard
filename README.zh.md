@@ -2,7 +2,7 @@
 
 > 即時呈現 Hermes Kanban 任務看板，含工作者狀態監控與輪詢更新。
 
-**即時展示**：`http://REDACTED:3000/`  
+**即時展示**：`http://localhost:3000/`  
 **專案庫**：[HTTP404Not-Found/Hermes_Agent_kanban_dashboard](https://github.com/HTTP404Not-Found/Hermes_Agent_kanban_dashboard)
 
 一個單頁式前端，把正在運行的 [Hermes Agent](https://github.com) Kanban 資料庫即時可視化：任務卡片、各 profile gateway 健康狀態、任務詳情彈窗、狀態／負責人／排序篩選器。前端是純 HTML + 原生 JS；後端是一支小型的 bash + Python 管線，把 Hermes CLI 輸出快照成 JSON 檔，由靜態伺服器送出。
@@ -136,7 +136,7 @@ bash /tmp/kanban-dashboard/_loop.sh &
 http://localhost:3000/
 ```
 
-遠端存取：`http://REDACTED:3000/`
+遠端存取：`http://localhost:3000/`
 
 ---
 
